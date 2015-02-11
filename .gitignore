@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Mac Finder
 .DS_Store
 
@@ -5,6 +6,8 @@
 /.idea/workspace.xml
 /.idea/libraries
 
+=======
+>>>>>>> 10fed1d464567dda48502643c9acfcbfdcfb091b
 # Built application files
 *.apk
 *.ap_
