@@ -1,12 +1,75 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".BoardControllerActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_material_dark"
+    tools:context=".BoadControllerActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+
+
+    <TextView
+        android:id="@+id/moves_label_textview"
+        android:textColor="@android:color/white"
+        android:text="@string/moves_label_text"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textSize="22dp" />
+
+    <TextView
+        android:id="@+id/moves_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="22dp"
+        android:layout_marginTop="3dp"
+        android:textColor="@android:color/white"
+        android:layout_below="@id/moves_label_textview"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_alignTop="@id/moves_label_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"
+        android:background="@null"
+        android:onClick="backButtonClicked"/>
+
+    <edu.utep.cs.cs4330.fifteenpuzzle.view.BoardView
+        android:id="@+id/board_view"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/new_board_button"
+        android:layout_width="120dp"
+        android:layout_height="45dp"
+        android:stateListAnimator="@null"
+        android:text="@string/new_button_text"
+        android:background="#bdbdbd"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_above="@id/board_view"
+        android:layout_marginBottom="25dp"
+        android:layout_alignParentLeft="true"
+        android:onClick="newBoardConfiguration"/>
+
+    <Button
+        android:id="@+id/solve_board_button"
+        android:layout_width="120dp"
+        android:layout_height="45dp"
+        android:stateListAnimator="@null"
+        android:text="@string/solve_button_text"
+        android:background="#bdbdbd"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_above="@id/board_view"
+        android:layout_marginBottom="25dp"
+        android:layout_alignParentRight="true"
+        android:onClick="solveBoardConfiguration"/>
 
 </RelativeLayout>

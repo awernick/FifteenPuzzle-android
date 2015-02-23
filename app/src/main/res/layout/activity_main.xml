@@ -1,0 +1,88 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_material_dark"
+    tools:context="edu.utep.cs.cs4330.fifteenpuzzle.MainActivity">
+
+    <TextView
+        android:id="@+id/app_title"
+        android:text="@string/app_title"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"
+        android:textSize="50dp"
+        android:paddingTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/easy_difficulty_button"
+        android:layout_below="@id/app_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:textColor="@android:color/white"
+        android:textSize="30dp"
+        android:text="@string/easy__diff_button_text"
+        android:stateListAnimator="@anim/button_elevation"
+        android:background="#7bb7bf"
+        android:onClick="easyDiffButtonClicked"/>
+
+
+    <Button
+        android:id="@+id/medium_difficulty_button"
+        android:layout_below="@id/easy_difficulty_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:textColor="@android:color/white"
+        android:textSize="30dp"
+        android:text="@string/medium_diff_button_text"
+        android:stateListAnimator="@anim/button_elevation"
+        android:background="#7bb7bf"
+        android:onClick="mediumDiffButtonClicked"/>
+
+    <Button
+        android:id="@+id/hard_difficulty_button"
+        android:layout_below="@id/medium_difficulty_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:textColor="@android:color/white"
+        android:textSize="30dp"
+        android:text="@string/hard_diff_button_text"
+        android:stateListAnimator="@anim/button_elevation"
+        android:background="#7bb7bf"
+        android:onClick="hardDiffButtonClicked"/>
+
+    <Button
+        android:id="@+id/about_button"
+        android:layout_below="@id/hard_difficulty_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:textColor="@color/background_material_dark"
+        android:textSize="30dp"
+        android:text="@string/about_button_text"
+        android:stateListAnimator="@anim/button_elevation"
+        android:background="#bdbdbd"/>
+</RelativeLayout>

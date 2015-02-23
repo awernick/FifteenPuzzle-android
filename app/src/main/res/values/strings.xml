@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">FifteenPuzzle</string>
-
+    <string name="app_title">15PZL</string>
+    <string name="new_button_text">NEW</string>
+    <string name="solve_button_text">SOLVE</string>
+    <string name="moves_label_text">MOVES</string>
+    <string name="hard_diff_button_text">IMPOSSIBRU!</string>
+    <string name="medium_diff_button_text">REGULAR JOE</string>
+    <string name="easy__diff_button_text">EASY PEASY</string>
+    <string name="about_button_text">ABOUT</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>
