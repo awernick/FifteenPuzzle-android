@@ -14,6 +14,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+/**
+ *  Main Menu activity for the FifteenPuzzle game.
+ *  Three different difficulties are available
+ *  which are Easy Peasy (2 x 2), Regular Joe (4 x 4),
+ *  and Impossibru! (6 x 6).
+ *
+ *  @author Alan Wernick
+ */
 public class MainActivity extends ActionBarActivity {
 
     @Override
@@ -26,28 +34,39 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
+        applyViewStyling();
+    }
+
+
+    /**
+     * Sets the view's typeface and elevate views for
+     * aesthetics (Not applicable in pre-lollipop devices).
+     */
+    public void applyViewStyling()
+    {
+        // Fetch OpenSans Semibold typeface
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(), "OpenSans-Semibold.ttf");
+
+        // Fetch Activity's views
         TextView titleTextView = (TextView) findViewById(R.id.app_title);
         Button easyDiffButton = (Button) findViewById(R.id.easy_difficulty_button);
         Button mediumDiffButton = (Button) findViewById(R.id.medium_difficulty_button);
         Button hardDiffButton = (Button) findViewById(R.id.hard_difficulty_button);
         Button aboutButton = (Button) findViewById(R.id.about_button);
 
-
+        // Set OpenSans as default typeface
         titleTextView.setTypeface(tf);
         easyDiffButton.setTypeface(tf);
         mediumDiffButton.setTypeface(tf);
         hardDiffButton.setTypeface(tf);
         aboutButton.setTypeface(tf);
 
-
+        // Elevate Buttons to create drop shadows
         ViewCompat.setElevation(easyDiffButton, 20);
         ViewCompat.setElevation(mediumDiffButton, 20);
         ViewCompat.setElevation(hardDiffButton, 20);
         ViewCompat.setElevation(aboutButton, 20);
     }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -70,21 +89,45 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Easy Peasy Button's action.
+     * Starts a BoardControllerActivity in the Easy difficulty.
+     *
+     * @param view Easy Peasy button
+     */
     public void easyDiffButtonClicked(View view)
     {
         initiateBoardController(BoardDifficulty.EASY);
     }
 
+    /**
+     * Regular Joe Button's action.
+     * Starts a BoardControllerActivity in the Medium difficulty.
+     *
+     * @param view Regular Joe button
+     */
     public void mediumDiffButtonClicked(View view)
     {
         initiateBoardController(BoardDifficulty.MEDIUM);
     }
 
+    /**
+     * Impossibru! Button's action.
+     * Starts a BoardControllerActivity in the Hard difficulty.
+     *
+     * @param view Impossibru! button
+     */
     public void hardDiffButtonClicked(View view)
     {
         initiateBoardController(BoardDifficulty.HARD);
     }
 
+    /**
+     * Helper method.
+     * Creates a BoardControllerActivity with the specified difficulty.
+     *
+     * @param difficulty BoardController's difficulty.
+     */
     public void initiateBoardController(BoardDifficulty difficulty)
     {
         Intent boardControllerIntent = new Intent(this, BoardControllerActivity.class);

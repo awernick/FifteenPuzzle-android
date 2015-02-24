@@ -1,7 +1,10 @@
 package edu.utep.cs.cs4330.fifteenpuzzle;
 
 /**
- * Created by awernick on 2/22/15.
+ * Enumeration class used to identify the game's
+ * different difficulties.
+ *
+ * @author Alan Wernick
  */
 public enum BoardDifficulty
 {

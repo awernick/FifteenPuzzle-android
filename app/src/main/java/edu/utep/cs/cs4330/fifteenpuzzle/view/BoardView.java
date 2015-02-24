@@ -9,7 +9,10 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.LayerDrawable;
+import android.os.Parcelable;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GestureDetectorCompat;
+import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.Display;
 import android.view.GestureDetector;
@@ -26,15 +29,16 @@ import edu.utep.cs.cs4330.fifteenpuzzle.model.TileMovement;
 
 import static edu.utep.cs.cs4330.fifteenpuzzle.model.TileMovement.*;
 /**
+ * The view used to represent the Board in the FifteenPuzzle game.
+ * This view can be declared programmatically in a view, or through an XML
+ * layout resource.
  *
- *
- * Created by awernick on 2/19/15.
+ * @author Alan Wernick
  */
 public class BoardView extends View implements View.OnTouchListener
 {
 
     private Paint paint;
-    private GestureDetectorCompat motionDetector;
     private LayerDrawable tileDrawable  = (LayerDrawable) getResources().getDrawable(R.drawable.tile_bevel);
     private BoardControllerActivity boardController;
     private final GestureDetector gestureDetector;
@@ -67,14 +71,19 @@ public class BoardView extends View implements View.OnTouchListener
         paint.setColor(Color.WHITE);
         paint.setAntiAlias(true);
 
+        // Initialize GestureDetector using GestureListener innerclass for SwipeEvents
         gestureDetector = new GestureDetector(context, new GestureListener());
         setOnTouchListener(this);
 
+        // Get controller instance
         boardController = (BoardControllerActivity) context;
+
+        // Fetch board width and length from controller
         boardLength = boardController.getBoardLength();
         boardWidth = boardController.getBoardWidth();
 
 
+        // Calculate Tile sizes using the current devices dimensions
         Display display = ((Activity) context).getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
@@ -85,21 +94,29 @@ public class BoardView extends View implements View.OnTouchListener
         tiles = new Rect[boardWidth][boardLength];
 
 
+        // Initialize a Rect grid of length * width
         for(int i = 0; i < boardLength; i++)
         {
             for (int j = 0; j < boardWidth; j++)
             {
-                System.out.println("SW:" + j * tileSize +  " SH:" + i * tileSize +  " PW:" + (j+1) * tileSize  +  " PH:" + (i+1) * tileSize);
+               //System.out.println("SW:" + j * tileSize +  " SH:" + i * tileSize +  " PW:" + (j+1) * tileSize  +  " PH:" + (i+1) * tileSize);
 
                 tiles[j][i] = new Rect(j * tileSize, i * tileSize, (j + 1) * tileSize, (i+1) * tileSize);
             }
         }
 
+        // Set the views typeface to OpenSans Light
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(), "OpenSans-Light.ttf");
         paint.setTextSize(tileSize/4);
         paint.setTypeface(tf);
     }
 
+    /**
+     * Sets the Views dimension when measured.
+     *
+     * @param widthMeasureSpec view's width
+     * @param heightMeasureSpec view's height
+     */
    @Override
    public void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
    {
@@ -137,8 +154,6 @@ public class BoardView extends View implements View.OnTouchListener
             Rect current = tiles[j][i];
             tileDrawable.setBounds(current.left, current.top, current.right, current.bottom);
             tileDrawable.draw(canvas);
-
-
 
 
             String value = "";
@@ -235,10 +250,12 @@ public class BoardView extends View implements View.OnTouchListener
     }
 
     /**
+     * Delegates touch event to the GestureDetector.
      *
-     * @param v
-     * @param event
-     * @return
+     * @param v View where the touch event occurred
+     * @param event touch event information
+     *
+     * @return true if the MotionEvent was handled, false otherwise.
      */
     public boolean onTouch(View v, MotionEvent event)
     {
@@ -246,7 +263,9 @@ public class BoardView extends View implements View.OnTouchListener
     }
 
     /**
+     * Calculates direction and intensity of Swipe events in the BoardView
      *
+     * @author Alan Wernick
      */
     private final class GestureListener extends GestureDetector.SimpleOnGestureListener
     {
@@ -255,9 +274,10 @@ public class BoardView extends View implements View.OnTouchListener
         private static final int SWIPE_VELOCITY_THRESHOLD = 25;
 
         /**
+         * Notified when a tap occurs with the down MotionEvent that triggered it.
+         * @param e The down motion event
          *
-         * @param e
-         * @return
+         * @return true if the event was consumed, else false.
          */
         @Override
         public boolean onDown(MotionEvent e) {
@@ -265,12 +285,15 @@ public class BoardView extends View implements View.OnTouchListener
         }
 
         /**
+         * Notified of a fling event when it occurs with the initial on down MotionEvent and the matching up MotionEvent.
+         * Calls the the BoardView's onSwipe methods depending on the type of event.
          *
-         * @param e1
-         * @param e2
-         * @param velocityX
-         * @param velocityY
-         * @return
+         * @param e1 The first down motion event that started the fling.
+         * @param e2 The move motion event that triggered the current onFling.
+         * @param velocityX The velocity of this fling measured in pixels per second along the x axis.
+         * @param velocityY	The velocity of this fling measured in pixels per second along the y axis.
+         *
+         * @return true if the event was consumed, else false.
          */
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
@@ -291,6 +314,7 @@ public class BoardView extends View implements View.OnTouchListener
             {
                 if(distanceY > 0)
                     onSwipeDown(e1, e2);
+
                 else
                     onSwipeUp(e1, e2);
             }

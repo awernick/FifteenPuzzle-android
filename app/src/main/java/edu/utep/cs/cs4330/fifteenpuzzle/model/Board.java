@@ -2,6 +2,7 @@ package edu.utep.cs.cs4330.fifteenpuzzle.model;
 
 import android.graphics.Path;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -167,9 +168,10 @@ public class Board
                 if(previousTile == null)
                     previousTile = tiles[j][i];
 
-                else if(tiles[j][i].getValue() > previousTile.getValue())
+                else if(tiles[j][i].getValue() == previousTile.getValue() + 1)
                     previousTile = tiles[j][i];
 
+                // Check if the previous tile is blank and is in the last position
                 else if(previousTile.getValue() == ((tiles.length * tiles[0].length) - 1) && tiles[j][i].getValue() == -1)
                     previousTile = tiles[j][i];
 

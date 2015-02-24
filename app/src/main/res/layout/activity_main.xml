@@ -29,7 +29,7 @@
         android:textSize="30dp"
         android:text="@string/easy__diff_button_text"
         android:stateListAnimator="@anim/button_elevation"
-        android:background="#7bb7bf"
+        android:background="@drawable/blue_background"
         android:onClick="easyDiffButtonClicked"/>
 
 
@@ -48,7 +48,7 @@
         android:textSize="30dp"
         android:text="@string/medium_diff_button_text"
         android:stateListAnimator="@anim/button_elevation"
-        android:background="#7bb7bf"
+        android:background="@drawable/blue_background"
         android:onClick="mediumDiffButtonClicked"/>
 
     <Button
@@ -66,7 +66,7 @@
         android:textSize="30dp"
         android:text="@string/hard_diff_button_text"
         android:stateListAnimator="@anim/button_elevation"
-        android:background="#7bb7bf"
+        android:background="@drawable/blue_background"
         android:onClick="hardDiffButtonClicked"/>
 
     <Button
@@ -84,5 +84,5 @@
         android:textSize="30dp"
         android:text="@string/about_button_text"
         android:stateListAnimator="@anim/button_elevation"
-        android:background="#bdbdbd"/>
+        android:background="@drawable/grey_background"/>
 </RelativeLayout>
